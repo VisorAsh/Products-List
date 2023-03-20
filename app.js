@@ -10,13 +10,15 @@ const PRODUCTS = [
     {category: "Home", price: "$399.99", stocked: false, name: "Bed"}
 ]
 
-function ProductRow ({product}) {
+// Avec le React.memo, on a définit une composante pure dont le render ne sera appelé que quand il y' aura un nouvel élement à afficher. (Ca ne se rajoute pas partout).
+
+const ProductRow  = React.memo(function ProductRow ({product}) {
     const name = product.stocked ? product.name : <span className="text-danger">{product.name}</span>
     return <tr>
         <td>{name}</td>
         <td>{product.price}</td>
     </tr>
-}
+})
 
 function ProductCategoryRow ({category}) {
     return <tr>
